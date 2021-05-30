@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="utf-8">
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+        <!--<link href="./static/css/style.css" rel="stylesheet" type="text/css">-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    </head>
+    <body>
+        <div id="background">
+            <div id="page">
+                <div id="header">
+                    <a href="index.html"><img id="logo" src="{{ url_for('static', filename='images/home.png') }}" width="200" height="63" alt=""></a>
+                    <ul class="navigation">
+                        Hello User {{ user }}
+                    </ul>
+                </div>
+                <div id="body">
+                    <br>
+                    <br>
+                    <div id="content">
+                        <br>
+                        <div class="element">
+                            <canvas id = "lineChart1", width="700", height="400", class="part"></canvas>
+                        </div>
+                        <div class="element">
+                            <canvas id = "lineChart2", width="700", height="400", class="part"></canvas>
+                        </div>
+
+                        <form action="/home" method="POST">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Fan Control:</span>
+                                        <input type="hidden" name="test" value="Fan">
+                                        <input type="submit" value="">
+                                    </td>
+                                    {% if out1 %}
+                                    <td>
+                                        {{ out1 }}
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                            </table>
+                        </form>
+
+
+                        <form action="/home" method="POST">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Light Control:</span>
+                                        <input type="hidden" name="test" value="Light">
+                                        <input type="submit" value="">
+                                    </td>
+                                    {% if out2 %}
+                                    <td>
+                                        {{ out2 }}
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                            </table>
+                        </form>
+
+                        <form action="/home" method="POST">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Door Control:</span>
+                                        <input type="hidden" name="test" value="Door">
+                                        <input type="submit" value="">
+                                    </td>
+                                    {% if out3 %}
+                                    <td>
+                                        {{ out3 }}
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                            </table>
+                        </form>
+
+                        <form action="/home" method="POST">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>Automatic mode:</span>
+                                        <input type="hidden" name="test" value="Auto">
+                                        <input type="submit" value="">
+                                    </td>
+                                    {% if out4 %}
+                                    <td>
+                                        {{ out4 }}
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                            </table>
+                        </form>
+
+                        <form action="/doorInfo" method="GET">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span>View door access history</span>
+                                        <input type="submit" value="">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div>
+                        <p>
+                        </p>
+                    </div>
+                    <span id="footnote"> </span>
+                    <ul class="connect">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            function graph(elementID, lab, val, text1)
+            {
+                var ctx = document.getElementById(elementID).getContext("2d");
+                var lineChart = new Chart(ctx, {
+                    type: "line",
+                    data : {
+                        labels: lab,
+                        datasets: [
+                            {
+                                label: "Data points",
+                                data: val,
+                                fill: false,
+                                borderColor: 'rgb(255, 255, 255)',
+                                lineTension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: false,
+                        title: {
+                            display: true,
+                            text: text1,
+                            fontColor: 'rgb(255, 255, 255)',
+                            fontSize: 20
+                        },
+                        scales: {
+                            xAxes: [{gridLines: { color: "rgb(200, 200, 200)" },
+                            ticks: {
+                                fontSize: 14,
+                                padding: 0,
+                                fontColor: 'rgb(255, 255, 255)'
+                            }
+                        }],
+                            yAxes: [{gridLines: { color: "rgb(200, 200, 200)" },
+                            ticks: {
+                                fontSize: 14,
+                                padding: 0,
+                                fontColor: 'rgb(255, 255, 255)'
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+
+            graph("lineChart1", {{ time | safe }}, {{ temp | safe }}, "Temperature")
+            graph("lineChart2", {{ time | safe }}, {{ humid | safe }}, "Humidity")
+        </script>
+    </body>
+</html>

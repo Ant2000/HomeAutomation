@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+	<meta charset="utf-8">
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="background">
+		<div id="page">
+			<div id="header">
+				<a href="index.html"><img id="logo" src="{{ url_for('static', filename='images/home.png') }}" width="200" height="63" alt=""></a>
+				<ul class="navigation">
+				</ul>
+			</div>
+			<div id="body">
+				<br>
+				<br>
+				<div id="content">
+					<table>
+                        <thead>
+                            <tr>
+                                <th>Door opening time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in data %}
+                            <tr>
+                                <td>{{row[0]}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+				</div>
+			</div>
+			<div id="footer">
+				<div>
+					<p>
+						<br>
+						<br>
+						 <a href="/home"> Click here to return to home page</a>
+						<br>
+						<br>
+					</p>
+				</div>
+				<span id="footnote"> </span>
+				<ul class="connect">
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

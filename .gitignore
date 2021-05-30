@@ -1,0 +1,6 @@
+/venv/
+/Documentation/
+/ArduinoOutput/
+/.vscode/
+/.idea/
+/data.db

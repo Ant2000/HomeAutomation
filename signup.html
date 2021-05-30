@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+	<meta charset="utf-8">
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="background">
+		<div id="page">
+			<div id="header">
+				<a href="index.html"><img id="logo" src="{{ url_for('static', filename='images/home.png') }}" width="200" height="63" alt=""></a>
+				<ul class="navigation">
+				</ul>
+			</div>
+			<div id="body">
+				<br>
+				<br>
+				<div id="content">
+					<form action="/register" method="POST">
+						<table>
+							<tr>
+								<td class="first">
+									<label for="email">
+										<span>Username:</span>
+										<input type="text" name="username" id="username">
+									</label>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<label for="subject">
+										<span>Password:</span>
+										<input type="password" name="password1" id="password1">
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="subject">
+										<span>Re-enter Password:</span>
+										<input type="password" name="password2" id="password2">
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="subject">
+										<span>Provide auth key:</span>
+										<input type="password" name="key" id="key">
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" value="">
+								</td>
+							</tr>
+							{% if msg %}
+							<tr>
+								<td>
+									{{ msg | safe }}
+								</td>
+							</tr>
+							{%endif%}
+						</table>
+					</form>
+				</div>
+			</div>
+			<div id="footer">
+				<div>
+					<p>
+						<br>
+						<br>
+						Already have an account? <a href="/"> Click Here</a>
+						<br>
+						<br>
+					</p>
+				</div>
+				<span id="footnote"> </span>
+				<ul class="connect">
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
